@@ -9,7 +9,6 @@ package com.woniu;
  */
 public class Test {
     public static void main(String[] args) {
-        System.out.println("测试推送");
         System.out.println("测试推送，6");
     }
 }
