@@ -1,9 +1,14 @@
 package com.minwei.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.minwei.pojo.Employee;
+import com.minwei.service.UserService;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import javax.servlet.http.HttpServletRequest;
+import javax.xml.transform.Result;
 
 /**
  * <p>
@@ -16,6 +21,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+    @Autowired
+    private UserService userService;
+
 
 }
 
