@@ -26,3 +26,6 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: assign_id
+# swagger
+swagger:
+  enable: true

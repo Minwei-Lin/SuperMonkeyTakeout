@@ -1,8 +1,8 @@
-package com.minwei.service.impl;
+package com.minwei.serviceImpl;
 
-import com.minwei.pojo.Setmeal;
-import com.minwei.mapper.SetmealMapper;
-import com.minwei.service.SetmealService;
+import com.pojo.Setmeal;
+import com.mapper.SetmealMapper;
+import com.service.SetmealService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author minwei
- * @since 2023-05-09
+ * @since 2023-05-10 11:07:25
  */
 @Service
 public class SetmealServiceImpl extends ServiceImpl<SetmealMapper, Setmeal> implements SetmealService {

@@ -1,8 +1,8 @@
-package com.minwei.service.impl;
+package com.minwei.serviceImpl;
 
-import com.minwei.pojo.ShoppingCart;
-import com.minwei.mapper.ShoppingCartMapper;
-import com.minwei.service.ShoppingCartService;
+import com.pojo.ShoppingCart;
+import com.mapper.ShoppingCartMapper;
+import com.service.ShoppingCartService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author minwei
- * @since 2023-05-09
+ * @since 2023-05-10 11:07:25
  */
 @Service
 public class ShoppingCartServiceImpl extends ServiceImpl<ShoppingCartMapper, ShoppingCart> implements ShoppingCartService {

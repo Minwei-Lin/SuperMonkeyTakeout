@@ -1,109 +1,87 @@
 package com.minwei.utils;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
-import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import com.baomidou.mybatisplus.generator.AutoGenerator;
-import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
-import com.baomidou.mybatisplus.generator.config.GlobalConfig;
-import com.baomidou.mybatisplus.generator.config.PackageConfig;
-import com.baomidou.mybatisplus.generator.config.StrategyConfig;
-import com.baomidou.mybatisplus.generator.config.po.TableFill;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.generator.FastAutoGenerator;
+import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
+import com.baomidou.mybatisplus.generator.engine.VelocityTemplateEngine;
+import com.baomidou.mybatisplus.generator.fill.Column;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.Collections;
+
 
 public class CodeGenerator {
+        public static void main(String[] args) {
+            //1、配置数据源
+            FastAutoGenerator.create("jdbc:mysql://localhost:3306/super_monkey", "root", "123456")
+                    //2、全局配置
+                    .globalConfig(builder -> {
+                        builder.author("minwei") // 设置作者名
+                                .outputDir(System.getProperty("user.dir") + "/src/main/java")   //设置输出路径：项目的 java 目录下
+                                .commentDate("yyyy-MM-dd hh:mm:ss")   //注释日期
+                                .dateType(DateType.ONLY_DATE)   //定义生成的实体类中日期的类型 TIME_PACK=LocalDateTime;ONLY_DATE=Date;
+                                .fileOverride()   //覆盖之前的文件
+                                .enableSwagger()   //开启 swagger 模式
+                                .disableOpenDir();   //禁止打开输出目录，默认打开
+                    })
+                    //3、包配置
+                    .packageConfig(builder -> {
+                        builder.parent("com") // 设置父包名
+                                .moduleName("")   //设置模块包名
+                                .entity("pojo")   //pojo 实体类包名
+                                .service("service") //Service 包名
+                                .serviceImpl("serviceImpl") // ***ServiceImpl 包名
+                                .mapper("mapper")   //Mapper 包名
+                                .xml("mapper")  //Mapper XML 包名
+                                .controller("controller") //Controller 包名
+                                .other("utils") //自定义文件包名
+                                .pathInfo(Collections.singletonMap(OutputFile.mapperXml, System.getProperty("user.dir") + "/src/main/resources/mapper"));    //配置 mapper.xml 路径信息：项目的 resources 目录下
+                    })
+                    //4、策略配置
+                    .strategyConfig(builder -> {
+                        builder.addInclude("address_book","category","dish","dish_flavor","employee","order_detail","orders","setmeal","setmeal_dish","shopping_cart","user") // 设置需要生成的数据表名
+                                .addTablePrefix("t_", "c_") // 设置过滤表前缀
 
+                                //4.1、Mapper策略配置
+                                .mapperBuilder()
+                                .superClass(BaseMapper.class)   //设置父类
+                                .formatMapperFileName("%sMapper")   //格式化 mapper 文件名称
+                                .enableMapperAnnotation()       //开启 @Mapper 注解
+                                .formatXmlFileName("%sXml")//格式化 Xml 文件名称
 
-    public static String scanner(String tip) {
-        Scanner scanner = new Scanner(System.in);
-        StringBuilder help = new StringBuilder();
-        help.append("请输入" + tip + "：");
-        System.out.println(help.toString());
-        if (scanner.hasNext()) {
-            String ipt = scanner.next();
-            if (StringUtils.isNotBlank(ipt)) {
-                return ipt;
-            }
+                                //4.2、service 策略配置
+                                .serviceBuilder()
+                                .formatServiceFileName("%sService") //格式化 service 接口文件名称，%s进行匹配表名，如 UserService
+                                .formatServiceImplFileName("%sServiceImpl") //格式化 service 实现类文件名称，%s进行匹配表名，如 UserServiceImpl
+
+                                //4.3、实体类策略配置
+                                .entityBuilder()
+                                .enableLombok() //开启 Lombok
+                                .disableSerialVersionUID()  //不实现 Serializable 接口，不生产 SerialVersionUID
+                                .logicDeleteColumnName("deleted")   //逻辑删除字段名
+                                .naming(NamingStrategy.underline_to_camel)  //数据库表映射到实体的命名策略：下划线转驼峰命
+                                .columnNaming(NamingStrategy.underline_to_camel)    //数据库表字段映射到实体的命名策略：下划线转驼峰命
+                                .addTableFills(
+                                        new Column("create_time", FieldFill.INSERT),
+                                        new Column("modify_time", FieldFill.INSERT_UPDATE)
+                                )   //添加表字段填充，"create_time"字段自动填充为插入时间，"modify_time"字段自动填充为插入修改时间
+                                .enableTableFieldAnnotation()       // 开启生成实体时生成字段注解
+
+                                //4.4、Controller策略配置
+                                .controllerBuilder()
+                                .formatFileName("%sController") //格式化 Controller 类文件名称，%s进行匹配表名，如 UserController
+                                .enableRestStyle();  //开启生成 @RestController 控制器
+                    })
+                    //5、模板
+                    .templateEngine(new VelocityTemplateEngine())
+                    /*
+                        .templateEngine(new FreemarkerTemplateEngine())
+                        .templateEngine(new BeetlTemplateEngine())
+                    */
+
+                    //6、执行
+                    .execute();
         }
-        throw new MybatisPlusException("请输入正确的" + tip + "！");
-    }
-
-
-
-
-
-    public static void main(String[] args) {
-        // 代码生成器
-        AutoGenerator mpg = new AutoGenerator();
-
-        // 全局配置
-        GlobalConfig gc = new GlobalConfig();
-        String projectPath = System.getProperty("user.dir");
-        gc.setOutputDir(projectPath + "/src/main/java");//设置代码生成路径
-        gc.setFileOverride(true);//是否覆盖以前文件
-        gc.setOpen(false);//是否打开生成目录
-        gc.setAuthor("minwei");//设置项目作者名称
-        gc.setIdType(IdType.AUTO);//设置主键策略
-        gc.setBaseResultMap(true);//生成基本ResultMap
-        gc.setBaseColumnList(true);//生成基本ColumnList
-        gc.setServiceName("%sService");//去掉服务默认前缀
-        gc.setDateType(DateType.ONLY_DATE);//设置时间类型
-        mpg.setGlobalConfig(gc);
-
-        // 数据源配置
-        DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://localhost:3306/super_monkey?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8");
-        dsc.setDriverName("com.mysql.cj.jdbc.Driver");
-        dsc.setUsername("root");
-        dsc.setPassword("123456");
-        mpg.setDataSource(dsc);
-
-        // 包配置
-        PackageConfig pc = new PackageConfig();
-        pc.setParent("com.minwei");
-        pc.setMapper("mapper");
-        pc.setXml("mapper.xml");
-        pc.setEntity("pojo");
-        pc.setService("service");
-        pc.setServiceImpl("service.impl");
-        pc.setController("controller");
-        mpg.setPackageInfo(pc);
-
-        // 策略配置
-        StrategyConfig sc = new StrategyConfig();
-        sc.setNaming(NamingStrategy.underline_to_camel);
-        sc.setColumnNaming(NamingStrategy.underline_to_camel);
-        sc.setEntityLombokModel(true);//自动lombok
-        sc.setRestControllerStyle(true);
-        sc.setControllerMappingHyphenStyle(true);
-
-        sc.setLogicDeleteFieldName("deleted");//设置逻辑删除
-
-        //设置自动填充配置
-        TableFill gmt_create = new TableFill("create_time", FieldFill.INSERT);
-        TableFill gmt_modified = new TableFill("update_time", FieldFill.INSERT_UPDATE);
-        ArrayList<TableFill> tableFills=new ArrayList<>();
-        tableFills.add(gmt_create);
-        tableFills.add(gmt_modified);
-        sc.setTableFillList(tableFills);
-
-        //乐观锁
-        sc.setVersionFieldName("version");
-        sc.setRestControllerStyle(true);//驼峰命名
-
-
-
-        //  sc.setTablePrefix("tbl_"); 设置表名前缀
-        sc.setInclude(scanner("表名，多个英文逗号分割").split(","));
-        mpg.setStrategy(sc);
-
-        // 生成代码
-        mpg.execute();
-    }
-
 }

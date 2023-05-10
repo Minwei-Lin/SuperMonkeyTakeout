@@ -1,8 +1,8 @@
-package com.minwei.service.impl;
+package com.minwei.serviceImpl;
 
-import com.minwei.pojo.Employee;
-import com.minwei.mapper.EmployeeMapper;
-import com.minwei.service.EmployeeService;
+import com.pojo.Employee;
+import com.mapper.EmployeeMapper;
+import com.service.EmployeeService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author minwei
- * @since 2023-05-09
+ * @since 2023-05-10 11:07:25
  */
 @Service
 public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> implements EmployeeService {

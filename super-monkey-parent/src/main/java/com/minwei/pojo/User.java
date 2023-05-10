@@ -1,11 +1,12 @@
 package com.minwei.pojo;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.Version;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.io.Serializable;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * <p>
@@ -13,48 +14,40 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author minwei
- * @since 2023-05-09
+ * @since 2023-05-10 11:07:25
  */
-@Data
-@EqualsAndHashCode(callSuper = false)
-public class User implements Serializable {
+@Getter
+@Setter
+@TableName("user")
+@ApiModel(value = "User对象", description = "用户信息")
+public class User {
 
-    private static final long serialVersionUID=1L;
-
-    /**
-     * 主键
-     */
-      @TableId(value = "id", type = IdType.AUTO)
+    @ApiModelProperty("主键")
+      @TableId("id")
     private Long id;
 
-    /**
-     * 姓名
-     */
+    @ApiModelProperty("姓名")
+    @TableField("name")
     private String name;
 
-    /**
-     * 手机号
-     */
+    @ApiModelProperty("手机号")
+    @TableField("phone")
     private String phone;
 
-    /**
-     * 性别
-     */
+    @ApiModelProperty("性别")
+    @TableField("sex")
     private String sex;
 
-    /**
-     * 身份证号
-     */
+    @ApiModelProperty("身份证号")
+    @TableField("id_number")
     private String idNumber;
 
-    /**
-     * 头像
-     */
+    @ApiModelProperty("头像")
+    @TableField("avatar")
     private String avatar;
 
-    /**
-     * 状态 0:禁用，1:正常
-     */
+    @ApiModelProperty("状态 0:禁用，1:正常")
+    @TableField("status")
     private Integer status;
 
 

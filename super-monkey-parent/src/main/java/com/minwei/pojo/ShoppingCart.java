@@ -1,15 +1,15 @@
 package com.minwei.pojo;
 
-import java.math.BigDecimal;
-import com.baomidou.mybatisplus.annotation.IdType;
-import java.util.Date;
-import com.baomidou.mybatisplus.annotation.Version;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import java.math.BigDecimal;
+import java.util.Date;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * <p>
@@ -17,64 +17,52 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author minwei
- * @since 2023-05-09
+ * @since 2023-05-10 11:07:25
  */
-@Data
-@EqualsAndHashCode(callSuper = false)
-public class ShoppingCart implements Serializable {
+@Getter
+@Setter
+@TableName("shopping_cart")
+@ApiModel(value = "ShoppingCart对象", description = "购物车")
+public class ShoppingCart {
 
-    private static final long serialVersionUID=1L;
-
-    /**
-     * 主键
-     */
-      @TableId(value = "id", type = IdType.AUTO)
+    @ApiModelProperty("主键")
+      @TableId("id")
     private Long id;
 
-    /**
-     * 名称
-     */
+    @ApiModelProperty("名称")
+    @TableField("name")
     private String name;
 
-    /**
-     * 图片
-     */
+    @ApiModelProperty("图片")
+    @TableField("image")
     private String image;
 
-    /**
-     * 主键
-     */
+    @ApiModelProperty("主键")
+    @TableField("user_id")
     private Long userId;
 
-    /**
-     * 菜品id
-     */
+    @ApiModelProperty("菜品id")
+    @TableField("dish_id")
     private Long dishId;
 
-    /**
-     * 套餐id
-     */
+    @ApiModelProperty("套餐id")
+    @TableField("setmeal_id")
     private Long setmealId;
 
-    /**
-     * 口味
-     */
+    @ApiModelProperty("口味")
+    @TableField("dish_flavor")
     private String dishFlavor;
 
-    /**
-     * 数量
-     */
+    @ApiModelProperty("数量")
+    @TableField("number")
     private Integer number;
 
-    /**
-     * 金额
-     */
+    @ApiModelProperty("金额")
+    @TableField("amount")
     private BigDecimal amount;
 
-    /**
-     * 创建时间
-     */
-      @TableField(fill = FieldFill.INSERT)
+    @ApiModelProperty("创建时间")
+      @TableField(value = "create_time", fill = FieldFill.INSERT)
     private Date createTime;
 
 

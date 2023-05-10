@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
  * </p>
  *
  * @author minwei
- * @since 2023-05-09
+ * @since 2023-05-10 11:07:25
  */
 @RestController
-@RequestMapping("/order-detail")
+@RequestMapping("/orderDetail")
 public class OrderDetailController {
 
 }

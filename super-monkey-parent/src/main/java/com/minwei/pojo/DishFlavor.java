@@ -1,14 +1,14 @@
 package com.minwei.pojo;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import java.util.Date;
-import com.baomidou.mybatisplus.annotation.Version;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import java.util.Date;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * <p>
@@ -16,60 +16,48 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author minwei
- * @since 2023-05-09
+ * @since 2023-05-10 11:07:25
  */
-@Data
-@EqualsAndHashCode(callSuper = false)
-public class DishFlavor implements Serializable {
+@Getter
+@Setter
+@TableName("dish_flavor")
+@ApiModel(value = "DishFlavor对象", description = "菜品口味关系表")
+public class DishFlavor {
 
-    private static final long serialVersionUID=1L;
-
-    /**
-     * 主键
-     */
-      @TableId(value = "id", type = IdType.AUTO)
+    @ApiModelProperty("主键")
+      @TableId("id")
     private Long id;
 
-    /**
-     * 菜品
-     */
+    @ApiModelProperty("菜品")
+    @TableField("dish_id")
     private Long dishId;
 
-    /**
-     * 口味名称
-     */
+    @ApiModelProperty("口味名称")
+    @TableField("name")
     private String name;
 
-    /**
-     * 口味数据list
-     */
+    @ApiModelProperty("口味数据list")
+    @TableField("value")
     private String value;
 
-    /**
-     * 创建时间
-     */
-      @TableField(fill = FieldFill.INSERT)
+    @ApiModelProperty("创建时间")
+      @TableField(value = "create_time", fill = FieldFill.INSERT)
     private Date createTime;
 
-    /**
-     * 更新时间
-     */
-      @TableField(fill = FieldFill.INSERT_UPDATE)
+    @ApiModelProperty("更新时间")
+    @TableField("update_time")
     private Date updateTime;
 
-    /**
-     * 创建人
-     */
+    @ApiModelProperty("创建人")
+    @TableField("create_user")
     private Long createUser;
 
-    /**
-     * 修改人
-     */
+    @ApiModelProperty("修改人")
+    @TableField("update_user")
     private Long updateUser;
 
-    /**
-     * 是否删除
-     */
+    @ApiModelProperty("是否删除")
+    @TableField("is_deleted")
     private Integer isDeleted;
 
 

@@ -1,6 +1,6 @@
 package com.minwei.service;
 
-import com.minwei.pojo.Setmeal;
+import com.pojo.Setmeal;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author minwei
- * @since 2023-05-09
+ * @since 2023-05-10 11:07:25
  */
 public interface SetmealService extends IService<Setmeal> {
 

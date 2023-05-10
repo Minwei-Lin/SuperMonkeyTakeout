@@ -1,14 +1,9 @@
 package com.minwei.controller;
 
 
-import com.minwei.pojo.Employee;
-import com.minwei.service.UserService;
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.xml.transform.Result;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
@@ -16,15 +11,11 @@ import javax.xml.transform.Result;
  * </p>
  *
  * @author minwei
- * @since 2023-05-09
+ * @since 2023-05-10 11:07:25
  */
 @RestController
 @RequestMapping("/user")
 public class UserController {
-
-    @Autowired
-    private UserService userService;
-
 
 }
 

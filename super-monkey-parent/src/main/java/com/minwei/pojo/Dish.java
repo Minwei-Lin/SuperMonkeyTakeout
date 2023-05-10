@@ -1,15 +1,15 @@
 package com.minwei.pojo;
 
-import java.math.BigDecimal;
-import com.baomidou.mybatisplus.annotation.IdType;
-import java.util.Date;
-import com.baomidou.mybatisplus.annotation.Version;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import java.math.BigDecimal;
+import java.util.Date;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * <p>
@@ -17,85 +17,68 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author minwei
- * @since 2023-05-09
+ * @since 2023-05-10 11:07:25
  */
-@Data
-@EqualsAndHashCode(callSuper = false)
-public class Dish implements Serializable {
+@Getter
+@Setter
+@TableName("dish")
+@ApiModel(value = "Dish对象", description = "菜品管理")
+public class Dish {
 
-    private static final long serialVersionUID=1L;
-
-    /**
-     * 主键
-     */
-      @TableId(value = "id", type = IdType.AUTO)
+    @ApiModelProperty("主键")
+      @TableId("id")
     private Long id;
 
-    /**
-     * 菜品名称
-     */
+    @ApiModelProperty("菜品名称")
+    @TableField("name")
     private String name;
 
-    /**
-     * 菜品分类id
-     */
+    @ApiModelProperty("菜品分类id")
+    @TableField("category_id")
     private Long categoryId;
 
-    /**
-     * 菜品价格
-     */
+    @ApiModelProperty("菜品价格")
+    @TableField("price")
     private BigDecimal price;
 
-    /**
-     * 商品码
-     */
+    @ApiModelProperty("商品码")
+    @TableField("code")
     private String code;
 
-    /**
-     * 图片
-     */
+    @ApiModelProperty("图片")
+    @TableField("image")
     private String image;
 
-    /**
-     * 描述信息
-     */
+    @ApiModelProperty("描述信息")
+    @TableField("description")
     private String description;
 
-    /**
-     * 0 停售 1 起售
-     */
+    @ApiModelProperty("0 停售 1 起售")
+    @TableField("status")
     private Integer status;
 
-    /**
-     * 顺序
-     */
+    @ApiModelProperty("顺序")
+    @TableField("sort")
     private Integer sort;
 
-    /**
-     * 创建时间
-     */
-      @TableField(fill = FieldFill.INSERT)
+    @ApiModelProperty("创建时间")
+      @TableField(value = "create_time", fill = FieldFill.INSERT)
     private Date createTime;
 
-    /**
-     * 更新时间
-     */
-      @TableField(fill = FieldFill.INSERT_UPDATE)
+    @ApiModelProperty("更新时间")
+    @TableField("update_time")
     private Date updateTime;
 
-    /**
-     * 创建人
-     */
+    @ApiModelProperty("创建人")
+    @TableField("create_user")
     private Long createUser;
 
-    /**
-     * 修改人
-     */
+    @ApiModelProperty("修改人")
+    @TableField("update_user")
     private Long updateUser;
 
-    /**
-     * 是否删除
-     */
+    @ApiModelProperty("是否删除")
+    @TableField("is_deleted")
     private Integer isDeleted;
 
 

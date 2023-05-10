@@ -1,14 +1,14 @@
 package com.minwei.pojo;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import java.util.Date;
-import com.baomidou.mybatisplus.annotation.Version;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import java.util.Date;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * <p>
@@ -16,110 +16,88 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author minwei
- * @since 2023-05-09
+ * @since 2023-05-10 11:07:25
  */
-@Data
-@EqualsAndHashCode(callSuper = false)
-public class AddressBook implements Serializable {
+@Getter
+@Setter
+@TableName("address_book")
+@ApiModel(value = "AddressBook对象", description = "地址管理")
+public class AddressBook {
 
-    private static final long serialVersionUID=1L;
-
-    /**
-     * 主键
-     */
-      @TableId(value = "id", type = IdType.AUTO)
+    @ApiModelProperty("主键")
+      @TableId("id")
     private Long id;
 
-    /**
-     * 用户id
-     */
+    @ApiModelProperty("用户id")
+    @TableField("user_id")
     private Long userId;
 
-    /**
-     * 收货人
-     */
+    @ApiModelProperty("收货人")
+    @TableField("consignee")
     private String consignee;
 
-    /**
-     * 性别 0 女 1 男
-     */
+    @ApiModelProperty("性别 0 女 1 男")
+    @TableField("sex")
     private Integer sex;
 
-    /**
-     * 手机号
-     */
+    @ApiModelProperty("手机号")
+    @TableField("phone")
     private String phone;
 
-    /**
-     * 省级区划编号
-     */
+    @ApiModelProperty("省级区划编号")
+    @TableField("province_code")
     private String provinceCode;
 
-    /**
-     * 省级名称
-     */
+    @ApiModelProperty("省级名称")
+    @TableField("province_name")
     private String provinceName;
 
-    /**
-     * 市级区划编号
-     */
+    @ApiModelProperty("市级区划编号")
+    @TableField("city_code")
     private String cityCode;
 
-    /**
-     * 市级名称
-     */
+    @ApiModelProperty("市级名称")
+    @TableField("city_name")
     private String cityName;
 
-    /**
-     * 区级区划编号
-     */
+    @ApiModelProperty("区级区划编号")
+    @TableField("district_code")
     private String districtCode;
 
-    /**
-     * 区级名称
-     */
+    @ApiModelProperty("区级名称")
+    @TableField("district_name")
     private String districtName;
 
-    /**
-     * 详细地址
-     */
+    @ApiModelProperty("详细地址")
+    @TableField("detail")
     private String detail;
 
-    /**
-     * 标签
-     */
+    @ApiModelProperty("标签")
+    @TableField("label")
     private String label;
 
-    /**
-     * 默认 0 否 1是
-     */
+    @ApiModelProperty("默认 0 否 1是")
+    @TableField("is_default")
     private Boolean isDefault;
 
-    /**
-     * 创建时间
-     */
-      @TableField(fill = FieldFill.INSERT)
+    @ApiModelProperty("创建时间")
+      @TableField(value = "create_time", fill = FieldFill.INSERT)
     private Date createTime;
 
-    /**
-     * 更新时间
-     */
-      @TableField(fill = FieldFill.INSERT_UPDATE)
+    @ApiModelProperty("更新时间")
+    @TableField("update_time")
     private Date updateTime;
 
-    /**
-     * 创建人
-     */
+    @ApiModelProperty("创建人")
+    @TableField("create_user")
     private Long createUser;
 
-    /**
-     * 修改人
-     */
+    @ApiModelProperty("修改人")
+    @TableField("update_user")
     private Long updateUser;
 
-    /**
-     * 是否删除
-     */
+    @ApiModelProperty("是否删除")
+    @TableField("is_deleted")
     private Integer isDeleted;
 
 
