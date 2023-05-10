@@ -3,6 +3,7 @@ package com.minwei;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @Title: com.woniu.SuperMonkeyTakeOutTest
@@ -13,6 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @Slf4j
 @SpringBootApplication
+@ComponentScan(basePackages = "com.minwei")
 public class SuperMonkeyTakeOutApplication {
     public static void main(String[] args) {
         SpringApplication.run(SuperMonkeyTakeOutApplication.class,args);
