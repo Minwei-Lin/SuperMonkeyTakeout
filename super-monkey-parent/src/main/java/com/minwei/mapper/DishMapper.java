@@ -1,7 +1,7 @@
 package com.minwei.mapper;
 
-import com.pojo.Dish;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.minwei.pojo.Dish;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

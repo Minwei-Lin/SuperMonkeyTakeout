@@ -1,7 +1,7 @@
 package com.minwei.mapper;
 
-import com.pojo.ShoppingCart;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.minwei.pojo.ShoppingCart;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

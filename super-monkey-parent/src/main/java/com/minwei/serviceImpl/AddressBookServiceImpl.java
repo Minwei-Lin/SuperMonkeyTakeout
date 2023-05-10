@@ -1,8 +1,8 @@
 package com.minwei.serviceImpl;
 
-import com.pojo.AddressBook;
-import com.mapper.AddressBookMapper;
-import com.service.AddressBookService;
+import com.minwei.pojo.AddressBook;
+import com.minwei.mapper.AddressBookMapper;
+import com.minwei.service.AddressBookService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

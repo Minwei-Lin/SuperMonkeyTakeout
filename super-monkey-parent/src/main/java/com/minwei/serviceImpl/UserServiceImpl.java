@@ -1,8 +1,8 @@
 package com.minwei.serviceImpl;
 
-import com.pojo.User;
-import com.mapper.UserMapper;
-import com.service.UserService;
+import com.minwei.pojo.User;
+import com.minwei.mapper.UserMapper;
+import com.minwei.service.UserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

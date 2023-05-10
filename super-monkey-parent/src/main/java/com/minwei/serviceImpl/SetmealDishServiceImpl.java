@@ -1,8 +1,8 @@
 package com.minwei.serviceImpl;
 
-import com.pojo.SetmealDish;
-import com.mapper.SetmealDishMapper;
-import com.service.SetmealDishService;
+import com.minwei.pojo.SetmealDish;
+import com.minwei.mapper.SetmealDishMapper;
+import com.minwei.service.SetmealDishService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

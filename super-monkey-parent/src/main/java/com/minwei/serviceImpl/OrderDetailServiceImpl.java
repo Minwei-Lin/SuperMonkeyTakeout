@@ -1,8 +1,8 @@
 package com.minwei.serviceImpl;
 
-import com.pojo.OrderDetail;
-import com.mapper.OrderDetailMapper;
-import com.service.OrderDetailService;
+import com.minwei.pojo.OrderDetail;
+import com.minwei.mapper.OrderDetailMapper;
+import com.minwei.service.OrderDetailService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,6 @@
 package com.minwei.service;
 
-import com.pojo.SetmealDish;
+import com.minwei.pojo.SetmealDish;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

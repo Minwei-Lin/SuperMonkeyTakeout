@@ -1,6 +1,6 @@
 package com.minwei.service;
 
-import com.pojo.AddressBook;
+import com.minwei.pojo.AddressBook;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

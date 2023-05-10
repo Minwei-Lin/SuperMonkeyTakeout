@@ -1,6 +1,6 @@
 package com.minwei.service;
 
-import com.pojo.ShoppingCart;
+import com.minwei.pojo.ShoppingCart;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
