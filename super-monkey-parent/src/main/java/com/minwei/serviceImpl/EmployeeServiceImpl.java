@@ -1,10 +1,15 @@
 package com.minwei.serviceImpl;
 
-import com.minwei.pojo.Employee;
-import com.minwei.mapper.EmployeeMapper;
-import com.minwei.service.EmployeeService;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.minwei.common.Result;
+import com.minwei.mapper.EmployeeMapper;
+import com.minwei.pojo.Employee;
+import com.minwei.service.EmployeeService;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * <p>

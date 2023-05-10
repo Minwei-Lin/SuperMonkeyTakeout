@@ -22,6 +22,9 @@ public class Result {
     @ApiModelProperty("响应数据")
     private Object data;
 
+    public Result() {
+    }
+
     public Result(Integer code, String message) {
         this.code = code;
         this.message = message;
