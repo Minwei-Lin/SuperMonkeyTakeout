@@ -139,6 +139,10 @@ public class EmployeeController {
         employeeService.updateById(employee);
         return Result.success("员工信息修改成功");
     }
-
+    @GetMapping("/{id}")
+    public Result getById(@PathVariable Long id){
+        Employee emp = employeeService.getById(id);
+        return Result.success(emp);
+    }
 }
 

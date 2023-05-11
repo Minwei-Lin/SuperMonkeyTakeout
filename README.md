@@ -19,11 +19,18 @@
 - [x] 用户登出功能
 #### 员工管理
 - [x] 添加员工
+- [x] 分页查询员工信息
+- [x] 启用/禁用账号及修改账号
+- [x] 编辑员工信息
 
 ## 项目界面
 ### 后台管理端
 #### 登录页面
 ![功能架构图](super-monkey-parent/src/main/resources/project-diagram/login_page.png)
+#### 员工管理
+![功能架构图](super-monkey-parent/src/main/resources/project-diagram/emp01.png)
+![功能架构图](super-monkey-parent/src/main/resources/project-diagram/emp02.png)
+![功能架构图](super-monkey-parent/src/main/resources/project-diagram/emp03.png)
 
 
 ## 参与贡献
