@@ -10,7 +10,6 @@ import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,6 +29,12 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
+    /**
+     * 员工登录
+     * @param request
+     * @param employee
+     * @return
+     */
     @PostMapping("/login")
     public Result login(HttpServletRequest request, @RequestBody Employee employee){
         //1.将页面提交的密码password进行md5加密处理
@@ -41,20 +46,37 @@ public class EmployeeController {
         Employee emp =employeeService.getOne(queryWrapper);
         //3.没有查询到，则返回登录失败的结果
         if (emp==null){
-            return new Result(401,"用户名不存在");
+            return Result.error("账户不存在");
         }
         //比对密码是否一致
         if (!emp.getPassword().equals(password)){
-            return new Result(401,"密码错误");
+            return Result.error("密码错误");
         }
         //查看员工状态是否被禁用
         if (emp.getStatus()==0){
             //账号被禁用，提示信息
-            return new Result(401,"该账号已被禁用");
+            return Result.error("该账号已被禁用");
         }
         //账号未被禁用，则将员工ID存入Session并返回登录成功结果
         request.getSession().setAttribute("employee",emp.getId());
-        return new Result(200,"登录成功",emp);
+        return Result.success("登录成功");
+    }
+
+    /**
+     * 员工退出
+     * @param request
+     * @return
+     */
+    @PostMapping("/logout")
+    public Result loginOut(HttpServletRequest request){
+        try {
+            //清理Session中保存的当前员工的ID
+            request.getSession().removeAttribute("employee");
+        }catch (Exception e){
+            //删除失败
+            return Result.error("登出失败");
+        }
+        return  Result.success("登出成功");
     }
 }
 

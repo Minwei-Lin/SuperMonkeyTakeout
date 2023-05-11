@@ -1,38 +1,38 @@
 package com.minwei.common;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-/**
- * @Title: Result
- * @Author linminwei
- * @Package com.minwei.common
- * @Date 2023/5/10 9:21
- * @description: 统一的响应对象
- */
+import java.util.HashMap;
+import java.util.Map;
 
 @Data
-@ApiModel("统一的响应对象")
-public class Result {
-    @ApiModelProperty("响应状态码")
-    private Integer code;
-    @ApiModelProperty("响应提示信息")
-    private String message;
-    @ApiModelProperty("响应数据")
-    private Object data;
+public class Result<T> {
 
-    public Result() {
+    private Integer code; //编码：1成功，0和其它数字为失败
+
+    private String msg; //错误信息
+
+    private T data; //数据
+
+    private Map map = new HashMap(); //动态数据
+
+    public static <T> Result<T> success(T object) {
+        Result<T> r = new Result<T>();
+        r.data = object;
+        r.code = 1;
+        return r;
     }
 
-    public Result(Integer code, String message) {
-        this.code = code;
-        this.message = message;
+    public static <T> Result<T> error(String msg) {
+        Result r = new Result();
+        r.msg = msg;
+        r.code = 0;
+        return r;
     }
 
-    public Result(Integer code, String message, Object data) {
-        this.code = code;
-        this.message = message;
-        this.data = data;
+    public Result<T> add(String key, Object value) {
+        this.map.put(key, value);
+        return this;
     }
+
 }
