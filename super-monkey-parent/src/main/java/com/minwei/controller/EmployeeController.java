@@ -60,7 +60,7 @@ public class EmployeeController {
         }
         //账号未被禁用，则将员工ID存入Session并返回登录成功结果
         request.getSession().setAttribute("employee",emp.getId());
-        return Result.success("登录成功");
+        return Result.success(emp);
     }
 
     /**
@@ -122,6 +122,22 @@ public class EmployeeController {
         //执行查询
         employeeService.page(pageInfo,queryWrapper);
         return Result.success(pageInfo);
+    }
+
+    /**
+     * 根据ID修改员工信息
+     * @param employee
+     * @return
+     */
+    @PutMapping
+    public Result update(HttpServletRequest request,@RequestBody Employee employee){
+        //设置更新时间
+        employee.setUpdateTime(new Date());
+        Long empId = (Long) request.getSession().getAttribute("employee");
+        //设置更新人
+        employee.setUpdateUser(empId);
+        employeeService.updateById(employee);
+        return Result.success("员工信息修改成功");
     }
 
 }
