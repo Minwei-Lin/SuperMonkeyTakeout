@@ -54,7 +54,7 @@ public class EmployeeController {
         }
         //账号未被禁用，则将员工ID存入Session并返回登录成功结果
         request.getSession().setAttribute("employee",emp.getId());
-        return new Result(200,"登录成功");
+        return new Result(200,"登录成功",emp);
     }
 }
 
