@@ -12,11 +12,16 @@
 ![功能架构图](super-monkey-parent/src/main/resources/project-diagram/functionalArchitecture.jpg)
 
 ## 目前进度
-### 后台管理端口
+### 后台管理端
 - [x] 管理员登入功能 
 
+## 项目界面
+### 后台管理端
+#### 登录页面
+![功能架构图](super-monkey-parent/src/main/resources/project-diagram/login_page.png)
 
-#### 参与贡献
+
+## 参与贡献
 
 1.  Fork 本仓库
 2.  新建 Feat_xxx 分支
@@ -24,7 +29,7 @@
 4.  新建 Pull Request
 
 
-#### 特技
+## 特技
 
 1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
 2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
