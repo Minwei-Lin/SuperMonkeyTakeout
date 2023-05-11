@@ -38,6 +38,7 @@ public class EmployeeController {
      */
     @PostMapping("/login")
     public Result login(HttpServletRequest request, @RequestBody Employee employee){
+        employeeService.login(request,employee);
         //1.将页面提交的密码password进行md5加密处理
         String password = employee.getPassword();
         password = DigestUtils.md5DigestAsHex(password.getBytes());
@@ -79,6 +80,13 @@ public class EmployeeController {
         }
         return  Result.success("登出成功");
     }
+
+    /**
+     * 添加用户
+     * @param request
+     * @param employee
+     * @return
+     */
     @PostMapping("/addEmployee")
     public Result addEmployee(HttpServletRequest request, @RequestBody Employee employee){
         //设置初始密码123456，需要进行md5加密处理
@@ -94,5 +102,8 @@ public class EmployeeController {
         employeeService.save(employee);
         return Result.success("新增员工成功");
     }
+
+//    public Result page(int page,int pageSize,String name);
+
 }
 
