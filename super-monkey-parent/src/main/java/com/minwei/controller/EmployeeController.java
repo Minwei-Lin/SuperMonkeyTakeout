@@ -2,15 +2,14 @@ package com.minwei.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.minwei.common.Result;
 import com.minwei.pojo.Employee;
 import com.minwei.service.EmployeeService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.DigestUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -103,7 +102,27 @@ public class EmployeeController {
         return Result.success("新增员工成功");
     }
 
-//    public Result page(int page,int pageSize,String name);
+    /**
+     *
+     * @param page 当前页
+     * @param pageSize 每页记录时数
+     * @param username 账户名
+     * @return
+     */
+    @GetMapping("/page")
+    public Result page(int page,int pageSize,String username){
+        //构造分页构造器
+        Page pageInfo = new Page(page,pageSize);
+        //构造条件构造器
+        LambdaQueryWrapper<Employee> queryWrapper = new LambdaQueryWrapper();
+        //添加过滤条件
+        queryWrapper.like(StringUtils.isNotEmpty(username),Employee::getUsername,username);
+        //添加排序条件
+        queryWrapper.orderByDesc(Employee::getUpdateTime);
+        //执行查询
+        employeeService.page(pageInfo,queryWrapper);
+        return Result.success(pageInfo);
+    }
 
 }
 
