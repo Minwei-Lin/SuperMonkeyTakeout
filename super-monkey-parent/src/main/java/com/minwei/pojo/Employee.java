@@ -1,14 +1,12 @@
 package com.minwei.pojo;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import java.util.Date;
+import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.Date;
 
 /**
  * <p>
@@ -25,7 +23,7 @@ import lombok.Setter;
 public class Employee {
 
     @ApiModelProperty("主键")
-      @TableId("id")
+    @TableId(value = "id",type = IdType.ASSIGN_ID)
     private Long id;
 
     @ApiModelProperty("姓名")
