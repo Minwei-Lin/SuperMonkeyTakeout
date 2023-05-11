@@ -1,15 +1,15 @@
 package com.minwei.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.minwei.common.Result;
 import com.minwei.pojo.Category;
+import com.minwei.pojo.Employee;
 import com.minwei.service.CategoryService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -49,5 +49,41 @@ public class CategoryController {
         return Result.success("新增菜品成功");
     }
 
+    /**
+     * 分页查询菜品/套餐分类
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    @GetMapping("/page")
+    public Result page(int page,int pageSize){
+        //构建分页构造器
+        Page pageInfo = new Page(page,pageSize);
+        //构建条件构造器
+        LambdaQueryWrapper<Category> wrapper = new LambdaQueryWrapper();
+        //添加排序条件
+        wrapper.orderByDesc(Category::getSort);
+        //根据条件构造器查询
+        categoryService.page(pageInfo,wrapper);
+        return Result.success(pageInfo);
+    }
+
+    /**
+     * 修改菜品/套餐分类
+     * @param request
+     * @param category
+     * @return
+     */
+    @PutMapping
+    public Result editCategory(HttpServletRequest request,@RequestBody Category category){
+        //添加修改修改日期
+        category.setUpdateTime(new Date());
+        //获取当前登录的账户
+        Long empId = (Long) request.getSession().getAttribute("employee");
+        //添加修改的账户
+        category.setUpdateUser(empId);
+        categoryService.updateById(category);
+        return Result.success("修改成功");
+    }
 }
 
