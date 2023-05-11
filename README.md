@@ -4,12 +4,12 @@
 本项目是专门为餐饮企业（餐厅、饭店）定制的一款软件产品，包括系统后台和移动端应用两部分。其中系统管理后台主要提供给餐饮企业内部员工使用，可对餐厅的菜品、套餐、订单等进行管理维护。移动端应用主要提供给消费者使用，可在线浏览菜品、添加购物车、下单等。
 
 ## 技术选型
-![技术选型图](super-monkey-parent/src/main/resources/project-diagram/technologySelection.jpg)
+![技术选型图](super-monkey-parent/src/main/resources/project-diagram/技术选型.jpg)
 
 
 
 ## 功能架构
-![功能架构图](super-monkey-parent/src/main/resources/project-diagram/functionalArchitecture.jpg)
+![功能架构图](super-monkey-parent/src/main/resources/project-diagram/功能架构.jpg)
 
 ## 目前进度
 ### 后台管理端
