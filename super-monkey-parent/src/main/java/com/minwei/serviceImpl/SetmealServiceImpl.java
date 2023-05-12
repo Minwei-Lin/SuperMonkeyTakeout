@@ -1,10 +1,22 @@
 package com.minwei.serviceImpl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.minwei.pojo.Category;
 import com.minwei.pojo.Setmeal;
 import com.minwei.mapper.SetmealMapper;
+import com.minwei.service.CategoryService;
 import com.minwei.service.SetmealService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.minwei.vo.DishVo;
+import com.minwei.vo.SetmealVo;
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -17,4 +29,38 @@ import org.springframework.stereotype.Service;
 @Service
 public class SetmealServiceImpl extends ServiceImpl<SetmealMapper, Setmeal> implements SetmealService {
 
+    @Autowired
+    private SetmealMapper setmealMapper;
+    @Autowired
+    private CategoryService categoryService;
+
+    @Override
+    public Page<SetmealVo> setmealByPage(Integer page, Integer pageSize, String name) {
+        //构建分页构造器
+        Page<Setmeal> pageInfo =  new Page<>(page,pageSize);
+        Page<SetmealVo> setmealVoPage = new Page<>(page,pageSize);
+        //构建条件构造器
+        LambdaQueryWrapper<Setmeal> wrapper = new LambdaQueryWrapper<>();
+        //添加过滤条件
+        wrapper.like(StringUtils.isNotEmpty(name),Setmeal::getName,name);
+        //添加排序条件
+        wrapper.orderByDesc(Setmeal::getUpdateTime);
+        //执行查询
+        setmealMapper.selectPage(pageInfo, wrapper);
+        //将查询出的结果拷贝至Vo的分页对象中,忽略records
+        BeanUtils.copyProperties(page,setmealVoPage,"records");
+        List<Setmeal> records = pageInfo.getRecords();
+        List<SetmealVo> list = records.stream().map((itme)->{
+            SetmealVo setmealVo  = new SetmealVo();
+            BeanUtils.copyProperties(itme,setmealVo);
+            Long categoryId = itme.getCategoryId();
+            //根据ID查询分类对象
+            Category category = categoryService.getById(categoryId);
+            String categoryName = category.getName();
+            setmealVo.setCategoryName(categoryName);
+            return setmealVo;
+        }).collect(Collectors.toList());
+        setmealVoPage.setRecords(list);
+        return setmealVoPage;
+    }
 }
