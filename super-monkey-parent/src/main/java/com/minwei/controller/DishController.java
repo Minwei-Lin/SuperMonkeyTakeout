@@ -24,6 +24,12 @@ public class DishController {
     @Autowired
     private DishService dishService;
 
+    /**
+     * 分页查询菜品
+     * @param page 当前页
+     * @param pageSize 每页记录数
+     * @return
+     */
     @GetMapping("/page")
     public Result page(Integer page,Integer pageSize){
         //构建分页构造器
