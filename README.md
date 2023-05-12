@@ -22,6 +22,11 @@
 - [x] 分页查询员工信息
 - [x] 启用/禁用账号及修改账号
 - [x] 编辑员工信息
+#### 分类管理
+- [x] 添加菜品/套餐分类
+- [x] 分页查询菜品/套餐分类
+- [x] 修改菜品/套餐分类
+- [x] 删除分类：优化了当分类关联了菜品/套餐时，不允许被删除。并添加自定义异常处理，更优雅。
 
 ## 项目界面
 ### 后台管理端
@@ -31,8 +36,10 @@
 ![功能架构图](super-monkey-parent/src/main/resources/project-diagram/emp01.png)
 ![功能架构图](super-monkey-parent/src/main/resources/project-diagram/emp02.png)
 ![功能架构图](super-monkey-parent/src/main/resources/project-diagram/emp03.png)
-
-
+#### 分类管理
+![功能架构图](super-monkey-parent/src/main/resources/project-diagram/分类管理-分页页面.png)
+![功能架构图](super-monkey-parent/src/main/resources/project-diagram/分类管理-新增.png)
+![功能架构图](super-monkey-parent/src/main/resources/project-diagram/分类管理-修改.png)
 ## 参与贡献
 
 1.  Fork 本仓库

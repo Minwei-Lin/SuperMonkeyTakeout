@@ -12,7 +12,6 @@ import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
 
 /**
  * <p>
@@ -82,22 +81,13 @@ public class EmployeeController {
 
     /**
      * 添加用户
-     * @param request
      * @param employee
      * @return
      */
     @PostMapping("/addEmployee")
-    public Result addEmployee(HttpServletRequest request, @RequestBody Employee employee){
+    public Result addEmployee(@RequestBody Employee employee){
         //设置初始密码123456，需要进行md5加密处理
         employee.setPassword(DigestUtils.md5DigestAsHex("123456".getBytes()));
-        //添加员工时间
-        employee.setCreateTime(new Date());
-        //更改员工的时间
-        employee.setUpdateTime(new Date());
-        //获取当前登录的管理员的ID
-        Long empId = (Long) request.getSession().getAttribute("employee");
-        employee.setCreateUser(empId);
-        employee.setUpdateUser(empId);
         employeeService.save(employee);
         return Result.success("新增员工成功");
     }
@@ -130,12 +120,7 @@ public class EmployeeController {
      * @return
      */
     @PutMapping
-    public Result update(HttpServletRequest request,@RequestBody Employee employee){
-        //设置更新时间
-        employee.setUpdateTime(new Date());
-        Long empId = (Long) request.getSession().getAttribute("employee");
-        //设置更新人
-        employee.setUpdateUser(empId);
+    public Result update(@RequestBody Employee employee){
         employeeService.updateById(employee);
         return Result.success("员工信息修改成功");
     }

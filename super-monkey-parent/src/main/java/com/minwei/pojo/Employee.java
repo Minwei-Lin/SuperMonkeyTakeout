@@ -55,20 +55,18 @@ public class Employee {
     private Integer status;
 
     @ApiModelProperty("创建时间")
-      @TableField(value = "create_time", fill = FieldFill.INSERT)
+    @TableField(value = "create_time", fill = FieldFill.INSERT)//插入时填充字段
     private Date createTime;
 
     @ApiModelProperty("更新时间")
-    @TableField("update_time")
+    @TableField(value = "update_time",fill = FieldFill.INSERT_UPDATE)//插入和更新时填充字段
     private Date updateTime;
 
     @ApiModelProperty("创建人")
-    @TableField("create_user")
+    @TableField(value = "create_user",fill = FieldFill.INSERT)//插入时填充字段
     private Long createUser;
 
     @ApiModelProperty("修改人")
-    @TableField("update_user")
+    @TableField(value = "update_user",fill = FieldFill.INSERT_UPDATE)//插入和更新时填充字段
     private Long updateUser;
-
-
 }

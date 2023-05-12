@@ -33,4 +33,11 @@ public class GlobalExceptionHandler {
         }
         return Result.error("未知错误");
     }
+
+    //处理分类下的关联菜品及套餐的异常
+    @ExceptionHandler(CustomException.class)
+    public Result<String> exceptionHandler(CustomException ex){
+        log.error(ex.getMessage());
+        return Result.error(ex.getMessage());
+    }
 }

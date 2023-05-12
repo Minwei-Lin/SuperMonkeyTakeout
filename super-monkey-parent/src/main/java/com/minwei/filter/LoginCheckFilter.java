@@ -1,6 +1,7 @@
 package com.minwei.filter;
 
 import com.alibaba.fastjson.JSON;
+import com.minwei.common.BaseContext;
 import com.minwei.common.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.AntPathMatcher;
@@ -51,6 +52,9 @@ public class LoginCheckFilter implements Filter {
         }
         //4. 判断登录状态，如已登录，则直接放行
         if (request.getSession().getAttribute("employee")!=null){
+            //获取登录用户ID
+            Long empId = (Long) request.getSession().getAttribute("employee");
+            BaseContext.setCurrentId(empId);
             //说明已经登录，直接放行
             filterChain.doFilter(request,response);
             return;
