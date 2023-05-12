@@ -4,12 +4,14 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.math.BigDecimal;
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * <p>
@@ -26,7 +28,7 @@ import lombok.Setter;
 public class ShoppingCart {
 
     @ApiModelProperty("主键")
-      @TableId("id")
+    @TableId("id")
     private Long id;
 
     @ApiModelProperty("名称")
@@ -62,7 +64,8 @@ public class ShoppingCart {
     private BigDecimal amount;
 
     @ApiModelProperty("创建时间")
-      @TableField(value = "create_time", fill = FieldFill.INSERT)
+    @TableField(value = "create_time", fill = FieldFill.INSERT)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createTime;
 
 

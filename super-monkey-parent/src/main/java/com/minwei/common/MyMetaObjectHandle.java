@@ -19,7 +19,7 @@ import java.util.Date;
 public class MyMetaObjectHandle implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
-        metaObject.setValue("createTime", new Date());
+        metaObject.setValue("createTime",new Date());
         metaObject.setValue("updateTime",new Date());
         metaObject.setValue("createUser",BaseContext.getCurrentId());
         metaObject.setValue("updateUser",BaseContext.getCurrentId());

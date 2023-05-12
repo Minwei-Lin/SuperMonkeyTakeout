@@ -3,11 +3,12 @@ package com.minwei.pojo;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.math.BigDecimal;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.math.BigDecimal;
 
 /**
  * <p>
@@ -24,7 +25,7 @@ import lombok.Setter;
 public class OrderDetail {
 
     @ApiModelProperty("主键")
-      @TableId("id")
+    @TableId("id")
     private Long id;
 
     @ApiModelProperty("名字")

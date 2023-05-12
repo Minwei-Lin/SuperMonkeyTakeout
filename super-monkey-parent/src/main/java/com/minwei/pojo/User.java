@@ -23,7 +23,7 @@ import lombok.Setter;
 public class User {
 
     @ApiModelProperty("主键")
-      @TableId("id")
+    @TableId("id")
     private Long id;
 
     @ApiModelProperty("姓名")

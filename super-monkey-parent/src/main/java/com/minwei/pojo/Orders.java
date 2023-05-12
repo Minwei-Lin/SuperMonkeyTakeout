@@ -3,12 +3,14 @@ package com.minwei.pojo;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.math.BigDecimal;
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * <p>
@@ -25,7 +27,7 @@ import lombok.Setter;
 public class Orders {
 
     @ApiModelProperty("主键")
-      @TableId("id")
+    @TableId("id")
     private Long id;
 
     @ApiModelProperty("订单号")
@@ -46,10 +48,12 @@ public class Orders {
 
     @ApiModelProperty("下单时间")
     @TableField("order_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date orderTime;
 
     @ApiModelProperty("结账时间")
     @TableField("checkout_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date checkoutTime;
 
     @ApiModelProperty("支付方式 1微信,2支付宝")
