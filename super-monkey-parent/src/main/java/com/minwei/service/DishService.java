@@ -3,6 +3,9 @@ package com.minwei.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.minwei.dto.DishDTO;
 import com.minwei.pojo.Dish;
+import com.minwei.vo.DishVo;
+
+import java.util.List;
 
 /**
  * <p>
@@ -15,4 +18,14 @@ import com.minwei.pojo.Dish;
 public interface DishService extends IService<Dish> {
 
     void saveWithFlavor(DishDTO dishDTO);
+
+
+    DishVo getByIdWithFlavor(Long id);
+
+    void updateDishWithFlavor(DishVo dishVo);
+
+    void deleteDishWithFlavor(List<Long> ids);
+
+    void updateDishStatus(Integer status, Long[] ids);
+
 }

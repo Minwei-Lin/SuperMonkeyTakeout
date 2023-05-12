@@ -31,4 +31,4 @@ swagger:
   enable: true
 # 图片上传路径
 superMonkey:
-  path: D:\My Development\My Project\StudyWork\super-orangutan-takeout\super-monkey-parent\src\main\resources\project-diagram\
+  path: D:\Development\MyProjects\StudyProjects\super-orangutan-takeout\super-monkey-parent\src\main\resources\project-diagram\

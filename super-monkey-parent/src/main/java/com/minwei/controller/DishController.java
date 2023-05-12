@@ -82,5 +82,49 @@ public class DishController {
         return Result.success("添加成功");
     }
 
+    /**
+     * 根据ID查询菜品信息和口味信息
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}")
+    public Result findByID(@PathVariable Long id){
+        DishVo dishVo = dishService.getByIdWithFlavor(id);
+        return Result.success(dishVo);
+    }
+
+    /**
+     * 修改菜品
+     * @param dishVo
+     * @return
+     */
+    @PutMapping
+    public Result updateDish(@RequestBody DishVo dishVo){
+        dishService.updateDishWithFlavor(dishVo);
+        return Result.success("修改成功");
+    }
+
+    /**
+     * 删除菜品，支持批量
+     * @param ids
+     * @return
+     */
+    @DeleteMapping
+    public Result deleteDish(@RequestParam List<Long> ids){
+        dishService.deleteDishWithFlavor(ids);
+        return Result.success("删除菜品成功");
+    }
+
+    /**
+     * 启售/停售菜品，支持批量
+     * @param status
+     * @param ids
+     * @return
+     */
+    @PostMapping("/status/{status}")
+    public Result upDateDishStatus(@PathVariable Integer status,Long[] ids){
+        dishService.updateDishStatus(status,ids);
+        return Result.success("启停售菜品成功");
+    }
 }
 

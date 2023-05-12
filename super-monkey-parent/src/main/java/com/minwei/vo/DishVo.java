@@ -1,7 +1,10 @@
 package com.minwei.vo;
 
 import com.minwei.pojo.Dish;
+import com.minwei.pojo.DishFlavor;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * @Title: DishVo
@@ -13,4 +16,5 @@ import lombok.Data;
 @Data
 public class DishVo extends Dish {
     private String categoryName;
+    private List<DishFlavor> flavors;
 }

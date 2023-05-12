@@ -30,6 +30,9 @@
 #### 菜品管理
 - [x] 文件上传与下载：下载功能主要为了页面回显
 - [x] 菜品新增：多表操作，引入事务
+- [x] 菜品修改
+- [x] 菜品删除，使用逻辑删除，并支持批量操作
+- [x] 菜品启售/停售，支持批量操作
 ## 项目界面
 ### 后台管理端
 #### 登录页面
@@ -42,6 +45,8 @@
 ![功能架构图](super-monkey-parent/src/main/resources/project-diagram/分类管理-分页页面.png)
 ![功能架构图](super-monkey-parent/src/main/resources/project-diagram/分类管理-新增.png)
 ![功能架构图](super-monkey-parent/src/main/resources/project-diagram/分类管理-修改.png)
+#### 菜品管理
+![功能架构图](super-monkey-parent/src/main/resources/project-diagram/菜品管理.png)
 ## 参与贡献
 
 1.  Fork 本仓库

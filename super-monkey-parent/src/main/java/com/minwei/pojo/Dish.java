@@ -1,9 +1,6 @@
 package com.minwei.pojo;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -28,7 +25,7 @@ import java.util.Date;
 public class Dish {
 
     @ApiModelProperty("主键")
-      @TableId("id")
+    @TableId("id")
     private Long id;
 
     @ApiModelProperty("菜品名称")
@@ -83,6 +80,7 @@ public class Dish {
 
     @ApiModelProperty("是否删除")
     @TableField("is_deleted")
+    @TableLogic(value = "0",delval = "1")
     private Integer isDeleted;
 
 
