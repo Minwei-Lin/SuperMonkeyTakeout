@@ -5,18 +5,21 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * @Title: com.woniu.SuperMonkeyTakeOutTest
+ * @Title: com.woniu.SuperMonkeyTakeOutApplication
  * @Author linminwei
  * @Package PACKAGE_NAME
  * @Date 2023/5/9 15:50
- * @description: 超级猩猩外卖父工程启动测试类
+ * @description: 超级猩猩外卖父工程启动类
  */
 @Slf4j
 @SpringBootApplication
 @ComponentScan(basePackages = "com.minwei")
 @ServletComponentScan
+@EnableTransactionManagement
+//@EnableTransactionManagement
 public class SuperMonkeyTakeOutApplication {
     public static void main(String[] args) {
         SpringApplication.run(SuperMonkeyTakeOutApplication.class,args);

@@ -1,7 +1,8 @@
 package com.minwei.service;
 
-import com.minwei.pojo.Dish;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.minwei.dto.DishDTO;
+import com.minwei.pojo.Dish;
 
 /**
  * <p>
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface DishService extends IService<Dish> {
 
+    void saveWithFlavor(DishDTO dishDTO);
 }

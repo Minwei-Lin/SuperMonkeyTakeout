@@ -4,11 +4,13 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.util.Date;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -22,10 +24,10 @@ import lombok.Setter;
 @Setter
 @TableName("dish_flavor")
 @ApiModel(value = "DishFlavor对象", description = "菜品口味关系表")
-public class DishFlavor {
+public class DishFlavor implements Serializable {
 
     @ApiModelProperty("主键")
-      @TableId("id")
+    @TableId("id")
     private Long id;
 
     @ApiModelProperty("菜品")
@@ -41,19 +43,19 @@ public class DishFlavor {
     private String value;
 
     @ApiModelProperty("创建时间")
-      @TableField(value = "create_time", fill = FieldFill.INSERT)
+    @TableField(value = "create_time", fill = FieldFill.INSERT)
     private Date createTime;
 
     @ApiModelProperty("更新时间")
-    @TableField("update_time")
+    @TableField(value = "update_time",fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
 
     @ApiModelProperty("创建人")
-    @TableField("create_user")
+    @TableField(value = "create_user",fill = FieldFill.INSERT)
     private Long createUser;
 
     @ApiModelProperty("修改人")
-    @TableField("update_user")
+    @TableField(value = "update_user",fill = FieldFill.INSERT_UPDATE)
     private Long updateUser;
 
     @ApiModelProperty("是否删除")

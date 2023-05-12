@@ -14,6 +14,8 @@ import com.minwei.service.SetmealService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * <p>
  * 菜品及套餐分类 前端控制器
@@ -103,6 +105,23 @@ public class CategoryController {
         //执行删除
         categoryService.removeById(id);
         return Result.success("删除成功");
+    }
+
+    /**
+     * 获取分类列表
+     * @return
+     */
+    @GetMapping("/list")
+    public Result ListCategory(Category category){
+        //创建条件构造器
+        LambdaQueryWrapper<Category> wrapper = new LambdaQueryWrapper<>();
+        //添加条件
+        wrapper.eq(category.getType()!=null,Category::getType,category.getType());
+        //添加排序条件
+        wrapper.orderByAsc(Category::getSort).orderByDesc(Category::getCreateTime);
+        //查询
+        List<Category> list = categoryService.list(wrapper);
+        return Result.success(list);
     }
 }
 
