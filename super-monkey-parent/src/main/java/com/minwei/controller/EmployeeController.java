@@ -96,17 +96,17 @@ public class EmployeeController {
      * 分页查询员工信息
      * @param page 当前页
      * @param pageSize 每页记录时数
-     * @param username 账户名
+     * @param name 账户名
      * @return
      */
     @GetMapping("/page")
-    public Result page(int page,int pageSize,String username){
+    public Result page(int page,int pageSize,String name){
         //构造分页构造器
         Page pageInfo = new Page(page,pageSize);
         //构造条件构造器
         LambdaQueryWrapper<Employee> queryWrapper = new LambdaQueryWrapper();
         //添加过滤条件
-        queryWrapper.like(StringUtils.isNotEmpty(username),Employee::getUsername,username);
+        queryWrapper.like(StringUtils.isNotEmpty(name),Employee::getUsername,name);
         //添加排序条件
         queryWrapper.orderByDesc(Employee::getUpdateTime);
         //执行查询
