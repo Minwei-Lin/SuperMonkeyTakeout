@@ -1,8 +1,9 @@
 package com.minwei.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.minwei.pojo.Setmeal;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.minwei.dto.SetmealDto;
+import com.minwei.pojo.Setmeal;
 import com.minwei.vo.SetmealVo;
 
 /**
@@ -16,4 +17,6 @@ import com.minwei.vo.SetmealVo;
 public interface SetmealService extends IService<Setmeal> {
 
     Page<SetmealVo> setmealByPage(Integer page, Integer pageSize, String name);
+
+    void addSetmealWithDish(SetmealDto setmealDto);
 }

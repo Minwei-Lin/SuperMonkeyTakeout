@@ -125,4 +125,22 @@ public class DishServiceImpl extends ServiceImpl<DishMapper, Dish> implements Di
             this.updateById(dish);
         }
     }
+
+    /**
+     * 根据分类ID查询菜品信息
+     * @param dish
+     * @return
+     */
+    @Override
+    public List<Dish> listByCategoryId(Dish dish) {
+        //条件构造器
+        LambdaQueryWrapper<Dish> wrapper = new LambdaQueryWrapper<>();
+        //构造过滤条件
+        wrapper.eq(dish.getCategoryId()!=null,Dish::getCategoryId,dish.getCategoryId());
+        wrapper.eq(Dish::getStatus,1);//1:开售，2，停售
+        //添加排序条件
+        wrapper.orderByAsc(Dish::getSort).orderByDesc(Dish::getUpdateTime);//根据sort升序，根据updatetime降序
+        List<Dish> dishList = this.list(wrapper);
+        return dishList;
+    }
 }

@@ -108,7 +108,7 @@ public class CategoryController {
     }
 
     /**
-     * 获取分类列表
+     * 获取分类列表及对应的菜品
      * @return
      */
     @GetMapping("/list")
@@ -119,7 +119,7 @@ public class CategoryController {
         wrapper.eq(category.getType()!=null,Category::getType,category.getType());
         //添加排序条件
         wrapper.orderByAsc(Category::getSort).orderByDesc(Category::getCreateTime);
-        //查询
+        //查询所有分类
         List<Category> list = categoryService.list(wrapper);
         return Result.success(list);
     }

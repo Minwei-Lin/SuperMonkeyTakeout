@@ -70,11 +70,11 @@ public class Setmeal {
     private Date updateTime;
 
     @ApiModelProperty("创建人")
-    @TableField("create_user")
+    @TableField(value = "create_user",fill = FieldFill.INSERT)
     private Long createUser;
 
     @ApiModelProperty("修改人")
-    @TableField("update_user")
+    @TableField(value = "update_user",fill = FieldFill.INSERT_UPDATE)
     private Long updateUser;
 
     @ApiModelProperty("是否删除")

@@ -28,4 +28,6 @@ public interface DishService extends IService<Dish> {
 
     void updateDishStatus(Integer status, Long[] ids);
 
+    List<Dish> listByCategoryId(Dish dish);
+
 }

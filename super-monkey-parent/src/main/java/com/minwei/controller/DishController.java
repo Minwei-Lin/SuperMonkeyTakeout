@@ -126,5 +126,16 @@ public class DishController {
         dishService.updateDishStatus(status,ids);
         return Result.success("启停售菜品成功");
     }
+
+    /**
+     * 根据分类ID查询菜品信息
+     * @param dish
+     * @return
+     */
+    @GetMapping("/list")
+    public Result<List<Dish>> ListByCategoryId(Dish dish){
+        List<Dish> dishes = dishService.listByCategoryId(dish);
+        return Result.success(dishes);
+    }
 }
 

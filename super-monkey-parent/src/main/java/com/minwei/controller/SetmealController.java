@@ -1,17 +1,13 @@
 package com.minwei.controller;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.minwei.common.Result;
-import com.minwei.pojo.Setmeal;
+import com.minwei.dto.SetmealDto;
 import com.minwei.service.SetmealService;
 import com.minwei.vo.SetmealVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -38,6 +34,17 @@ public class SetmealController {
     public Result page(Integer page,Integer pageSize,String name){
         Page<SetmealVo> pageInfo = setmealService.setmealByPage(page, pageSize, name);
         return Result.success(pageInfo);
+    }
+
+    /**
+     * 保存套餐
+     * @param setmealDto
+     * @return
+     */
+    @PostMapping
+    public Result addSetmealWithDish(@RequestBody SetmealDto setmealDto){
+        setmealService.addSetmealWithDish(setmealDto);
+        return Result.success("套餐添加成功");
     }
 }
 

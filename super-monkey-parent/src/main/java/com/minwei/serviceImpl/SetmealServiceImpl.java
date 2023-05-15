@@ -2,18 +2,21 @@ package com.minwei.serviceImpl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.minwei.dto.SetmealDto;
+import com.minwei.mapper.SetmealMapper;
 import com.minwei.pojo.Category;
 import com.minwei.pojo.Setmeal;
-import com.minwei.mapper.SetmealMapper;
+import com.minwei.pojo.SetmealDish;
 import com.minwei.service.CategoryService;
+import com.minwei.service.SetmealDishService;
 import com.minwei.service.SetmealService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.minwei.vo.DishVo;
 import com.minwei.vo.SetmealVo;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,6 +36,8 @@ public class SetmealServiceImpl extends ServiceImpl<SetmealMapper, Setmeal> impl
     private SetmealMapper setmealMapper;
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private SetmealDishService setmealDishService;
 
     @Override
     public Page<SetmealVo> setmealByPage(Integer page, Integer pageSize, String name) {
@@ -63,4 +68,26 @@ public class SetmealServiceImpl extends ServiceImpl<SetmealMapper, Setmeal> impl
         setmealVoPage.setRecords(list);
         return setmealVoPage;
     }
+
+    /**
+     * 保存套餐
+     * @param setmealDto
+     */
+    @Override
+    @Transactional
+    public void addSetmealWithDish(SetmealDto setmealDto) {
+        //保存套餐信息
+        setmealMapper.insert(setmealDto);
+        //遍历套餐中的菜品
+        List<SetmealDish> setmealDishes = setmealDto.getSetmealDishes();
+        setmealDishes.stream().map((item)->{
+            item.setSetmealId(String.valueOf(setmealDto.getId()));
+            return item;
+        }).collect(Collectors.toList());
+        //保存套餐和菜品的关联信息
+        setmealDishService.saveBatch(setmealDishes);
+    }
+
+
+
 }
