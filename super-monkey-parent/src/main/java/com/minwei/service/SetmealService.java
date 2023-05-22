@@ -6,6 +6,8 @@ import com.minwei.dto.SetmealDto;
 import com.minwei.pojo.Setmeal;
 import com.minwei.vo.SetmealVo;
 
+import java.util.List;
+
 /**
  * <p>
  * 套餐 服务类
@@ -19,4 +21,12 @@ public interface SetmealService extends IService<Setmeal> {
     Page<SetmealVo> setmealByPage(Integer page, Integer pageSize, String name);
 
     void addSetmealWithDish(SetmealDto setmealDto);
+
+    void updateSetmealWithDish(SetmealDto setmealDto);
+
+    SetmealDto querySeteamlDetails(Long id);
+
+    void deletedSetmeals(List<Long> ids);
+
+    void setmealStatusByStatus(Integer status, Long[] ids);
 }

@@ -1,14 +1,10 @@
 package com.minwei.pojo;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -21,8 +17,7 @@ import java.util.Date;
  * @author minwei
  * @since 2023-05-10 11:07:25
  */
-@Getter
-@Setter
+@Data
 @TableName("setmeal")
 @ApiModel(value = "Setmeal对象", description = "套餐")
 public class Setmeal {
@@ -79,7 +74,6 @@ public class Setmeal {
 
     @ApiModelProperty("是否删除")
     @TableField("is_deleted")
+    @TableLogic(value = "0",delval = "1")
     private Integer isDeleted;
-
-
 }

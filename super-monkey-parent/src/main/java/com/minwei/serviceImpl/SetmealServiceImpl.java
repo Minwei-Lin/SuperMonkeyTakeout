@@ -88,6 +88,64 @@ public class SetmealServiceImpl extends ServiceImpl<SetmealMapper, Setmeal> impl
         setmealDishService.saveBatch(setmealDishes);
     }
 
+    @Override
+    public void updateSetmealWithDish(SetmealDto setmealDto) {
+        //更新套餐信息
+        setmealMapper.updateById(setmealDto);
+        //先清空当前套餐对应的菜品
+        LambdaQueryWrapper<SetmealDish> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(SetmealDish::getSetmealId,setmealDto.getId());
+        setmealDishService.remove(wrapper);
+        //遍历套餐中的菜品
+        List<SetmealDish> setmealDishes = setmealDto.getSetmealDishes();
+        setmealDishes.stream().map((item)->{
+            item.setSetmealId(String.valueOf(setmealDto.getId()));
+            return item;
+        }).collect(Collectors.toList());
+        //更新套餐和菜品的关联信息
+        setmealDishService.saveBatch(setmealDishes);
+    }
+
+    @Override
+    public SetmealDto querySeteamlDetails(Long id) {
+        //查询套餐详细信息
+        Setmeal setmeal = setmealMapper.selectById(id);
+        //属性拷贝
+        SetmealDto setmealDto = new SetmealDto();
+        BeanUtils.copyProperties(setmeal,setmealDto);
+        //查询套餐所对应的菜品
+        //1.构建条件构造器
+        LambdaQueryWrapper<SetmealDish> wrapper = new LambdaQueryWrapper();
+        //2.构建查询条件
+        wrapper.eq(SetmealDish::getSetmealId,setmeal.getId());
+        List<SetmealDish> list = setmealDishService.list(wrapper);
+        setmealDto.setSetmealDishes(list);
+        return setmealDto;
+    }
+
+    @Override
+    public void deletedSetmeals(List<Long> ids) {
+        //删除套餐信息
+        this.removeByIds(ids);
+        for (Long id : ids) {
+            //删除套餐对应的菜品信息
+            LambdaQueryWrapper<SetmealDish> wrapper = new LambdaQueryWrapper();
+            wrapper.eq(SetmealDish::getSetmealId,id);
+            setmealDishService.remove(wrapper);
+        }
+    }
+
+    @Override
+    public void setmealStatusByStatus(Integer status, Long[] ids) {
+        for (Long id : ids) {
+            //通过ID查询套餐
+            Setmeal setmeal = this.getById(id);
+            //设置套餐状态
+            setmeal.setStatus(status);
+            //更新套餐信息
+            this.updateById(setmeal);
+        }
+    }
 
 
 }
