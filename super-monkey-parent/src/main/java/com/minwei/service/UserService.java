@@ -1,7 +1,11 @@
 package com.minwei.service;
 
+import com.minwei.common.Result;
 import com.minwei.pojo.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 /**
  * <p>
@@ -13,4 +17,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface UserService extends IService<User> {
 
+    Result<String> sendMsg(User user, HttpSession session);
+
+    Result<User> login(Map map, HttpSession session);
 }
