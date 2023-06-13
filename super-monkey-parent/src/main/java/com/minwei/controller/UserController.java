@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.security.PublicKey;
 import java.util.Map;
 
 /**
@@ -54,6 +56,17 @@ public class UserController {
     @PostMapping("/login")
     public Result<User> login(@RequestBody Map map, HttpSession session){
         return userService.login(map,session);
+    }
+
+    /**
+     * 账户登出
+     * @param request
+     * @return
+     */
+    @PostMapping("/loginout")
+    public Result<String> loginOut(HttpServletRequest request){
+        request.getSession().removeAttribute("user");
+        return Result.success("账户登录成功");
     }
 }
 
